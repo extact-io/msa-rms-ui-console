@@ -26,6 +26,9 @@ import io.helidon.microprofile.tests.junit5.HelidonTest;
 @HelidonTest
 @AddBean(RmsServerApiRemoteStub.class)
 @AddBean(RmsServerApiRemoteStubApplication.class)
+// configuredCdi.register.0.classは/main/resource/application.yamlで定義済み
+@AddConfig(key = "configuredCdi.register.1.class", value = "io.extact.msa.rms.platform.core.jwt.impl.jose4j.Jose4jJwtGenerator")
+@AddConfig(key = "configuredCdi.register.2.class", value = "io.extact.msa.rms.platform.core.jwt.impl.jose4j.Jose4jPrivateSecretedTokenValidator")
 @AddConfig(key = PROP_NAME, value = REAL)
 @AddConfig(key = "server.port", value = "7001") // for REST server
 @AddConfig(key = "web-api/mp-rest/url", value = "http://localhost:7001") // for REST Client

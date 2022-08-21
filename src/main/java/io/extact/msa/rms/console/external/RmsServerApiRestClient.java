@@ -24,9 +24,9 @@ import io.extact.msa.rms.console.external.dto.AddUserAccountRequestDto;
 import io.extact.msa.rms.console.external.dto.RentalItemClientDto;
 import io.extact.msa.rms.console.external.dto.ReservationClientDto;
 import io.extact.msa.rms.console.external.dto.UserAccountClientDto;
-import io.extact.msa.rms.console.external.jwt.JwtPropagateClientHeadersFactory;
-import io.extact.msa.rms.console.external.jwt.JwtRecieveResponseFilter;
 import io.extact.msa.rms.platform.core.jaxrs.converter.RmsTypeParameterFeature;
+import io.extact.msa.rms.platform.core.jwt.client.JwtPropagateClientHeadersFactory;
+import io.extact.msa.rms.platform.core.jwt.client.JwtRecieveResponseFilter;
 import io.extact.msa.rms.platform.fw.webapi.client.ExceptionPropagateClientMapper;
 
 @RegisterRestClient(configKey = "web-api")
