@@ -1,0 +1,4 @@
+config_ordinal: 150
+server.url: http://localhost:7001
+web-api/mp-rest/url: ${server.url}
+main.manifest.jar: msa-rms-ui-console\.jar$
