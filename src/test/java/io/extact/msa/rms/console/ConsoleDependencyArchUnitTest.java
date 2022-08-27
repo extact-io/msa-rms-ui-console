@@ -33,8 +33,8 @@ class ConsoleDependencyArchUnitTest {
                                 "org.beryx.textio..",
                                 "org.apache.commons.lang3..",
                                 "org.slf4j..",
-                                "javax.inject..",
-                                "javax.enterprise.context..",
+                                "jakarta.inject..",
+                                "jakarta.enterprise.context..",
                                 "java.."
                             )
                             // https://github.com/TNG/ArchUnit/issues/183 による配列型の個別追加
@@ -58,8 +58,8 @@ class ConsoleDependencyArchUnitTest {
                                 "io.extact.msa.rms.console..",
                                 "org.apache.commons.lang3..",
                                 "org.slf4j..",
-                                "javax.inject..",
-                                "javax.enterprise.context..",
+                                "jakarta.inject..",
+                                "jakarta.enterprise.context..",
                                 "java.."
                             )
                             // https://github.com/TNG/ArchUnit/issues/183 による配列型の個別追加
@@ -84,10 +84,10 @@ class ConsoleDependencyArchUnitTest {
                                 "org.apache.commons.lang3..",
                                 "org.slf4j..",
                                 "org.eclipse.microprofile.rest.client..",
-                                "javax.inject..",
-                                "javax.enterprise.context..",
-                                "javax.enterprise.event..",
-                                "javax.ws..",
+                                "jakarta.inject..",
+                                "jakarta.enterprise.context..",
+                                "jakarta.enterprise.event..",
+                                "jakarta.ws..",
                                 "java.."
                             )
                             // https://github.com/TNG/ArchUnit/issues/183 による配列型の個別追加

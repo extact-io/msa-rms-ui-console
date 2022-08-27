@@ -4,11 +4,11 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.security.RolesAllowed;
-import javax.enterprise.context.ApplicationScoped;
-import javax.validation.constraints.NotNull;
-import javax.ws.rs.Path;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.security.RolesAllowed;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.validation.constraints.NotNull;
+import jakarta.ws.rs.Path;
 
 import io.extact.msa.rms.console.external.RmsServerApiRestClient;
 import io.extact.msa.rms.console.external.dto.AddRentalItemRequestDto;

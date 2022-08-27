@@ -3,8 +3,8 @@ package io.extact.msa.rms.console.service;
 import java.time.LocalDate;
 import java.util.List;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 
 import io.extact.msa.rms.console.external.RmsServerApi;
 import io.extact.msa.rms.console.external.dto.AddRentalItemRequestDto;

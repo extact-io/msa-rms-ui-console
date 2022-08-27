@@ -1,7 +1,7 @@
 package io.extact.msa.rms.console.ui;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 
 import io.extact.msa.rms.console.model.UserAccountClientModel;
 import io.extact.msa.rms.console.service.ClientApplicationService;

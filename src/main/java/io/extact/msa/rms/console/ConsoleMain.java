@@ -2,7 +2,7 @@ package io.extact.msa.rms.console;
 
 import static io.extact.msa.rms.console.ui.ClientConstants.*;
 
-import javax.enterprise.inject.spi.CDI;
+import jakarta.enterprise.inject.spi.CDI;
 
 import io.extact.msa.rms.console.ui.ScreenController;
 import io.extact.msa.rms.console.ui.textio.TextIoUtils;
