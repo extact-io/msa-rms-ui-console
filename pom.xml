@@ -199,8 +199,12 @@
 											<link>msa-service-user</link>
 										</links>
 										<wait>
-											<!-- TODO:Healthyなもので確認するようにする -->
-											<time>20000</time>
+											<http>
+												<url>http://localhost:7001/health/ready</url>
+												<method>GET</method>
+												<status>200..399</status>
+											</http>
+											<time>60000</time>
 										</wait>
 									</run>
 								</image>
