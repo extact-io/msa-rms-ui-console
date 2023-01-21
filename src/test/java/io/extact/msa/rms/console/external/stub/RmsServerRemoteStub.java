@@ -2,29 +2,25 @@ package io.extact.msa.rms.console.external.stub;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Map;
 
 import jakarta.annotation.PostConstruct;
-import jakarta.annotation.security.RolesAllowed;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.validation.constraints.NotNull;
 import jakarta.ws.rs.Path;
 
-import io.extact.msa.rms.console.external.RmsServerApiRestClient;
+import io.extact.msa.rms.console.external.RmsServerRestClient;
 import io.extact.msa.rms.console.external.dto.AddRentalItemRequestDto;
 import io.extact.msa.rms.console.external.dto.AddReservationRequestDto;
 import io.extact.msa.rms.console.external.dto.AddUserAccountRequestDto;
 import io.extact.msa.rms.console.external.dto.RentalItemClientDto;
 import io.extact.msa.rms.console.external.dto.ReservationClientDto;
 import io.extact.msa.rms.console.external.dto.UserAccountClientDto;
-import io.extact.msa.rms.platform.core.jwt.consumer.Authenticated;
-import io.extact.msa.rms.platform.core.jwt.login.LoginUserUtils;
-import io.extact.msa.rms.platform.core.jwt.provider.GenerateToken;
 import io.extact.msa.rms.platform.core.validate.ValidateGroup;
 import io.extact.msa.rms.platform.core.validate.ValidateParam;
 import io.extact.msa.rms.platform.fw.domain.constraint.RmsId;
 import io.extact.msa.rms.platform.fw.domain.constraint.ValidationGroups.Add;
 import io.extact.msa.rms.platform.fw.domain.vo.UserType;
+import io.extact.msa.rms.platform.fw.login.LoginUserUtils;
 import io.extact.msa.rms.platform.test.stub.RentalItemMemoryStub;
 import io.extact.msa.rms.platform.test.stub.ReservationMemoryStub;
 import io.extact.msa.rms.platform.test.stub.UserAccountMemoryStub;
@@ -35,13 +31,10 @@ import io.extact.msa.rms.platform.test.stub.dto.RentalItemStubDto;
 import io.extact.msa.rms.platform.test.stub.dto.ReservationStubDto;
 import io.extact.msa.rms.platform.test.stub.dto.UserAccountStubDto;
 
-@ApplicationScoped
-@ValidateParam
 @Path("/rms")
-public class RmsServerApiRemoteStub implements RmsServerApiRestClient {
-
-    private static final String ADMIN_ROLE = "ADMIN";
-    private static final String MEMBER_ROLE = "MEMBER";
+@ValidateParam
+@ApplicationScoped
+public class RmsServerRemoteStub implements RmsServerRestClient {
 
     private RentalItemMemoryStub itemStub = new RentalItemMemoryStub();
     private UserAccountMemoryStub userStub = new UserAccountMemoryStub();
@@ -54,15 +47,6 @@ public class RmsServerApiRemoteStub implements RmsServerApiRestClient {
         reservationStub.init();
     }
 
-    @GenerateToken
-    @Override
-    public UserAccountClientDto authenticate(Map<String, String> paramMap) {
-        return userStub.authenticate(paramMap.get("loginId"), paramMap.get("password"))
-                .transform(this::convertUserAccountDto);
-    }
-
-    @Authenticated
-    @RolesAllowed(MEMBER_ROLE)
     @Override
     // @RmsIdと@NotNullはparameter errorのテストのためにココだけ付けている
     public List<ReservationClientDto> findReservation(@RmsId int itemId, @NotNull LocalDate targetDate) {
@@ -71,8 +55,6 @@ public class RmsServerApiRemoteStub implements RmsServerApiRestClient {
                 .toList();
     }
 
-    @Authenticated
-    @RolesAllowed(MEMBER_ROLE)
     @Override
     public List<ReservationClientDto> findReservationByReserverId(Integer reserverId) {
         return reservationStub.findByReserverId(reserverId).stream()
@@ -80,8 +62,6 @@ public class RmsServerApiRemoteStub implements RmsServerApiRestClient {
                 .toList();
     }
 
-    @Authenticated
-    @RolesAllowed(MEMBER_ROLE)
     @Override
     public List<ReservationClientDto> getOwnReservations() {
         return reservationStub.findByReserverId(LoginUserUtils.get().getUserId()).stream()
@@ -89,8 +69,6 @@ public class RmsServerApiRemoteStub implements RmsServerApiRestClient {
                 .toList();
     }
 
-    @Authenticated
-    @RolesAllowed({ MEMBER_ROLE, ADMIN_ROLE })
     @Override
     public List<RentalItemClientDto> getAllRentalItems() {
         return itemStub.getAll().stream()
@@ -98,8 +76,6 @@ public class RmsServerApiRemoteStub implements RmsServerApiRestClient {
                 .toList();
     }
 
-    @Authenticated
-    @RolesAllowed(ADMIN_ROLE)
     @Override
     public List<UserAccountClientDto> getAllUserAccounts() {
         return userStub.getAll().stream()
@@ -107,8 +83,6 @@ public class RmsServerApiRemoteStub implements RmsServerApiRestClient {
                 .toList();
     }
 
-    @Authenticated
-    @RolesAllowed(MEMBER_ROLE)
     @ValidateGroup(groups = Add.class)
     @Override
     public ReservationClientDto addReservation(AddReservationRequestDto requestDto) {
@@ -116,31 +90,23 @@ public class RmsServerApiRemoteStub implements RmsServerApiRestClient {
                 .transform(this::convertReservationDto);
     }
 
-    @Authenticated
-    @RolesAllowed(ADMIN_ROLE)
     @Override
     public RentalItemClientDto addRentalItem(AddRentalItemRequestDto requestDto) {
         return itemStub.add(convertAddRentalItemDto(requestDto))
                 .transform(this::convertRentalItemDto);
     }
 
-    @Authenticated
-    @RolesAllowed(ADMIN_ROLE)
     @Override
     public UserAccountClientDto addUserAccount(AddUserAccountRequestDto requestDto) {
         return userStub.add(convertAddUserAccountDto(requestDto))
                 .transform(this::convertUserAccountDto);
     }
 
-    @Authenticated
-    @RolesAllowed(MEMBER_ROLE)
     @Override
     public void cancelReservation(Integer reservationId) {
         reservationStub.cancel(reservationId, LoginUserUtils.get().getUserId());
     }
 
-    @Authenticated
-    @RolesAllowed(ADMIN_ROLE)
     @Override
     public UserAccountClientDto updateUserAccount(UserAccountClientDto updateDto) {
         return userStub.update(convertUserAccountStubDto(updateDto))

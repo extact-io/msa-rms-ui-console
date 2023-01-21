@@ -1,7 +1,9 @@
 package io.extact.msa.rms.console.it;
 
-import io.extact.msa.rms.console.external.stub.RmsServerApiRemoteStub;
-import io.extact.msa.rms.console.external.stub.RmsServerApiRemoteStubApplication;
+import io.extact.msa.rms.console.external.stub.LoginServerRemoteStub;
+import io.extact.msa.rms.console.external.stub.LoginServerRemoteStubApplication;
+import io.extact.msa.rms.console.external.stub.RmsServerRemoteStub;
+import io.extact.msa.rms.console.external.stub.RmsServerRemoteStubApplication;
 import io.helidon.microprofile.tests.junit5.AddBean;
 import io.helidon.microprofile.tests.junit5.AddConfig;
 
@@ -14,11 +16,12 @@ import io.helidon.microprofile.tests.junit5.AddConfig;
  * ・スタブ：RestResource(RmsServerApiRemoteStub)
  * </pre>
  */
-@AddBean(RmsServerApiRemoteStub.class)
-@AddBean(RmsServerApiRemoteStubApplication.class)
+@AddBean(LoginServerRemoteStub.class)
+@AddBean(LoginServerRemoteStubApplication.class)
+@AddBean(RmsServerRemoteStub.class)
+@AddBean(RmsServerRemoteStubApplication.class)
 //configuredCdi.register.0.classは/main/resource/application.yamlで定義済み
-@AddConfig(key = "configuredCdi.register.1.class", value = "io.extact.msa.rms.platform.core.jwt.impl.jose4j.Jose4jJwtGenerator")
-@AddConfig(key = "configuredCdi.register.2.class", value = "io.extact.msa.rms.platform.core.jwt.impl.jose4j.Jose4jPrivateSecretedTokenValidator")
+@AddConfig(key = "configuredCdi.register.1.class", value = "io.extact.msa.rms.platform.core.jwt.provider.impl.Auth0RsaJwtGenerator")
 @AddConfig(key = "server.port", value = "7001") // for RemoteStub Server port
 @AddConfig(key = "web-api/mp-rest/url", value = "http://localhost:7001") // for REST Client
 class StubClientScenarioTest extends AbstractClientScenarioTest {

@@ -14,17 +14,7 @@ import io.extact.msa.rms.platform.fw.exception.BusinessFlowException;
 /**
  * レンタル予約アプリケーションのClient向けインターフェース
  */
-public interface RmsServerApi {
-
-    /**
-     * ユーザをパスワードで認証する。
-     * <p>
-     * @param loginId 認証するユーザのログインID
-     * @param password 認証パスワード
-     * @return 認証ユーザ。認証できなかった場合はnull
-     * @throws BusinessFlowException ユーザIDまたはパスワードに一致するユーザがいない
-     */
-    UserAccountClientDto authenticate(String loginId, String password) throws BusinessFlowException;
+public interface RmsServer {
 
     /**
      * 指定されたレンタル品と利用開始日に対する予約を取得する。

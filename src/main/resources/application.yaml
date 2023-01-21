@@ -5,4 +5,4 @@ main.manifest.jar: msa-rms-ui-console\.jar$
 
 configuredCdi:
   register:
-    - class: io.extact.msa.rms.platform.core.jwt.client.JwtPropagateClientHeadersFactory
+    - class: io.extact.msa.rms.platform.fw.external.PropagateJwtClientHeadersFactory

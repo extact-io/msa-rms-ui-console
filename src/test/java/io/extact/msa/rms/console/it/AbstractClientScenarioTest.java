@@ -19,7 +19,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import io.extact.msa.rms.console.model.RentalItemClientModel;
 import io.extact.msa.rms.console.model.ReservationClientModel;
 import io.extact.msa.rms.console.model.UserAccountClientModel;
-import io.extact.msa.rms.console.service.ClientApplicationService;
+import io.extact.msa.rms.console.service.ClientService;
 import io.extact.msa.rms.platform.fw.domain.vo.UserType;
 import io.extact.msa.rms.platform.fw.exception.BusinessFlowException;
 import io.extact.msa.rms.platform.fw.exception.BusinessFlowException.CauseType;
@@ -38,7 +38,7 @@ import io.helidon.microprofile.tests.junit5.HelidonTest;
 abstract class AbstractClientScenarioTest {
 
     @Inject
-    private ClientApplicationService service;
+    private ClientService service;
     private ScenarioContext context = new ScenarioContext();
 
     static class ScenarioContext {

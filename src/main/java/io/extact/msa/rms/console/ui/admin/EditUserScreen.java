@@ -4,7 +4,7 @@ import static io.extact.msa.rms.console.ui.ClientConstants.*;
 import static io.extact.msa.rms.console.ui.textio.TextIoUtils.*;
 
 import io.extact.msa.rms.console.model.UserAccountClientModel;
-import io.extact.msa.rms.console.service.ClientApplicationService;
+import io.extact.msa.rms.console.service.ClientService;
 import io.extact.msa.rms.console.ui.ClientConstants;
 import io.extact.msa.rms.console.ui.TransitionMap.RmsScreen;
 import io.extact.msa.rms.console.ui.TransitionMap.Transition;
@@ -17,7 +17,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class EditUserScreen implements RmsScreen {
 
-    private final ClientApplicationService service;
+    private final ClientService service;
 
     @Override
     public Transition play(UserAccountClientModel loginUser, boolean printHeader) {

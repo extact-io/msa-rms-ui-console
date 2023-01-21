@@ -2,7 +2,6 @@ package io.extact.msa.rms.console.external;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Map;
 
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
@@ -25,23 +24,15 @@ import io.extact.msa.rms.console.external.dto.RentalItemClientDto;
 import io.extact.msa.rms.console.external.dto.ReservationClientDto;
 import io.extact.msa.rms.console.external.dto.UserAccountClientDto;
 import io.extact.msa.rms.platform.core.jaxrs.converter.RmsTypeParameterFeature;
-import io.extact.msa.rms.platform.core.jwt.client.JwtPropagateClientHeadersFactory;
-import io.extact.msa.rms.platform.core.jwt.client.JwtRecieveResponseFilter;
-import io.extact.msa.rms.platform.fw.webapi.client.ExceptionPropagateClientMapper;
+import io.extact.msa.rms.platform.fw.external.PropagateJwtClientHeadersFactory;
+import io.extact.msa.rms.platform.fw.external.PropagateResponseExceptionMapper;
 
 @RegisterRestClient(configKey = "web-api")
 @RegisterProvider(RmsTypeParameterFeature.class)
-@RegisterProvider(ExceptionPropagateClientMapper.class)
-@RegisterProvider(JwtRecieveResponseFilter.class)
-@RegisterClientHeaders(JwtPropagateClientHeadersFactory.class)
+@RegisterProvider(PropagateResponseExceptionMapper.class)
+@RegisterClientHeaders(PropagateJwtClientHeadersFactory.class)
 @Path("/rms")
-public interface RmsServerApiRestClient {
-
-    @POST
-    @Path("/login")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    UserAccountClientDto authenticate(Map<String, String> paramMap);
+public interface RmsServerRestClient {
 
     @GET
     @Path("/reservations/item/{itemId}/startdate/{startDate}")

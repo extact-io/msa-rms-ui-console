@@ -6,7 +6,7 @@ import jakarta.enterprise.inject.spi.CDI;
 
 import io.extact.msa.rms.console.ui.ScreenController;
 import io.extact.msa.rms.console.ui.textio.TextIoUtils;
-import io.extact.msa.rms.platform.fw.webapi.server.BootstrapWebApi;
+import io.extact.msa.rms.platform.fw.webapi.BootstrapWebApi;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j

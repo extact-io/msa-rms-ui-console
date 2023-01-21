@@ -4,7 +4,7 @@ import static io.extact.msa.rms.console.ui.ClientConstants.*;
 import static io.extact.msa.rms.console.ui.textio.TextIoUtils.*;
 
 import io.extact.msa.rms.console.model.UserAccountClientModel;
-import io.extact.msa.rms.console.service.ClientApplicationService;
+import io.extact.msa.rms.console.service.ClientService;
 import io.extact.msa.rms.console.ui.TransitionMap.RmsScreen;
 import io.extact.msa.rms.console.ui.TransitionMap.Transition;
 import io.extact.msa.rms.platform.core.env.Environment;
@@ -18,7 +18,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class LoginScreen implements RmsScreen {
 
-    private final ClientApplicationService service;
+    private final ClientService service;
     private final LoginEventObserver loginObserver;
 
     @Override

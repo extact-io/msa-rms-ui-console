@@ -8,7 +8,7 @@ import java.util.List;
 import io.extact.msa.rms.console.model.RentalItemClientModel;
 import io.extact.msa.rms.console.model.ReservationClientModel;
 import io.extact.msa.rms.console.model.UserAccountClientModel;
-import io.extact.msa.rms.console.service.ClientApplicationService;
+import io.extact.msa.rms.console.service.ClientService;
 import io.extact.msa.rms.console.ui.TransitionMap.RmsScreen;
 import io.extact.msa.rms.console.ui.TransitionMap.Transition;
 import io.extact.msa.rms.console.ui.textio.TextIoUtils;
@@ -18,7 +18,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class InquiryReservationScreen implements RmsScreen {
 
-    private final ClientApplicationService service;
+    private final ClientService service;
 
     @Override
     public Transition play(UserAccountClientModel loginUser, boolean printHeader) {

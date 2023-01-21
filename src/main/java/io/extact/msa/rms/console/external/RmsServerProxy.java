@@ -3,7 +3,6 @@ package io.extact.msa.rms.console.external;
 import static io.extact.msa.rms.console.external.ApiType.*;
 
 import java.time.LocalDate;
-import java.util.HashMap;
 import java.util.List;
 
 import jakarta.enterprise.context.ApplicationScoped;
@@ -22,21 +21,13 @@ import io.extact.msa.rms.platform.fw.exception.BusinessFlowException;
 
 @ApplicationScoped
 @EnabledIfRuntimeConfig(propertyName = PROP_NAME, value = REAL)
-public class RmsServerApiRestBridge implements RmsServerApi {
+public class RmsServerProxy implements RmsServer {
 
-    private RmsServerApiRestClient client;
+    private RmsServerRestClient client;
 
     @Inject
-    public RmsServerApiRestBridge(@RestClient RmsServerApiRestClient client) {
+    public RmsServerProxy(@RestClient RmsServerRestClient client) {
         this.client = client;
-    }
-
-    @Override
-    public UserAccountClientDto authenticate(String loginId, String password) {
-        var paramMap = new HashMap<String, String>();
-        paramMap.put("loginId", loginId);
-        paramMap.put("password", password);
-        return client.authenticate(paramMap);
     }
 
     @Override

@@ -4,7 +4,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 
 import io.extact.msa.rms.console.model.UserAccountClientModel;
-import io.extact.msa.rms.console.service.ClientApplicationService;
+import io.extact.msa.rms.console.service.ClientService;
 import io.extact.msa.rms.console.ui.TransitionMap.RmsScreen;
 import io.extact.msa.rms.console.ui.TransitionMap.Transition;
 import io.extact.msa.rms.console.ui.admin.AdminMainScreen;
@@ -26,7 +26,7 @@ public class ScreenController implements LoginEventObserver {
     private UserAccountClientModel currentLoginUser;
 
     @Inject
-    public ScreenController(ClientApplicationService service) {
+    public ScreenController(ClientService service) {
         this.transitionMap = new TransitionMap();
         transitionMap.add(Transition.LOGIN, new LoginScreen(service, this));
         transitionMap.add(Transition.MEMBER_MAIN, new MemberMainScreen());
