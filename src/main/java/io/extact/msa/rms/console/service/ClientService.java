@@ -26,9 +26,9 @@ public class ClientService {
     private LoginServer loginServer;
 
     @Inject
-    public ClientService(LoginServer loginServer, RmsServer api) {
+    public ClientService(LoginServer loginServer, RmsServer apiServer) {
         this.loginServer = loginServer;
-        this.rmsServer = api;
+        this.rmsServer = apiServer;
     }
 
     public UserAccountClientModel authenticate(String loginId, String password) throws BusinessFlowException {

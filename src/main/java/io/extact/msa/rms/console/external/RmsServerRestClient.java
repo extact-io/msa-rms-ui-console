@@ -31,7 +31,7 @@ import io.extact.msa.rms.platform.fw.external.PropagateResponseExceptionMapper;
 @RegisterProvider(RmsTypeParameterFeature.class)
 @RegisterProvider(PropagateResponseExceptionMapper.class)
 @RegisterClientHeaders(PropagateJwtClientHeadersFactory.class)
-@Path("/rms")
+@Path("api/rms")
 public interface RmsServerRestClient {
 
     @GET

@@ -77,7 +77,7 @@ public class EditUserScreen implements RmsScreen {
 
         // 連絡先の入力
         var contact = newStringInputReader()
-                .withDefaultValue(targetUser.getPhoneNumber())
+                .withDefaultValue(targetUser.getContact())
                 .withMaxLength(15)
                 .read("連絡先（省略可）");
         targetUser.setContact(contact);

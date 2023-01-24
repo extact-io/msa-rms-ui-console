@@ -16,6 +16,7 @@
   <logger name="ConfigDump" level="DEBUG"/>
   <logger name="ServerHeaderDump" level="DEBUG"/>
   <logger name="io.extact.msa.rms.platform" level="DEBUG"/>
+  <logger name="io.helidon.webserver.AccessLog" level="DEBUG" />
 
   <root level="INFO">
     <appender-ref ref="STDOUT" />

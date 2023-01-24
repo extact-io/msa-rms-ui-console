@@ -3,6 +3,7 @@ package io.extact.msa.rms.console.ui.member;
 import static io.extact.msa.rms.console.ui.ClientConstants.*;
 import static io.extact.msa.rms.console.ui.textio.TextIoUtils.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import io.extact.msa.rms.console.model.RentalItemClientModel;
@@ -12,7 +13,6 @@ import io.extact.msa.rms.console.service.ClientService;
 import io.extact.msa.rms.console.ui.TransitionMap.RmsScreen;
 import io.extact.msa.rms.console.ui.TransitionMap.Transition;
 import io.extact.msa.rms.console.ui.textio.TextIoUtils;
-import io.extact.msa.rms.platform.fw.exception.BusinessFlowException;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -52,26 +52,23 @@ public class InquiryReservationScreen implements RmsScreen {
                 .read("日付（入力例－2020/10/23）");
 
         // 照会の実行
-        try {
-            var results = service.findReservationByRentalItemAndStartDate(selectedItem, inputedDate);
-            printResultList(results);
-            return Transition.MEMBER_MAIN;
-
-        } catch (BusinessFlowException e) {
-            printServerError(e);
+        var results = service.findReservationByRentalItemAndStartDate(selectedItem, inputedDate);
+        // 該当データなしの場合は最初から
+        if (results.isEmpty()) {
+            printErrorInformation(DATA_NOT_FOUND_INFORMATION);
             return play(loginUser, false); // start over!!
-
         }
+        // 該当データありの場合は結果出力してメインメニューへ
+        printResultList(selectedItem, inputedDate, results);
+        return Transition.MEMBER_MAIN;
     }
 
-    private void printResultList(List<ReservationClientModel> reservations) {
+    private void printResultList(int selectedItem, LocalDate inputedDate, List<ReservationClientModel> reservations) {
         blankLine();
         println("***** 予約検索結果 *****");
-        println("選択レンタル品番号：" + reservations.get(0).getRentalItemId());
-        println("入力日付：" + DATE_FORMAT.format(reservations.get(0).getStartDateTime()));
-        reservations.forEach(r ->
-            println(RESERVATION_FORMAT.format(r))
-        );
+        println("選択レンタル品番号：" + selectedItem);
+        println("入力日付：" + DATE_FORMAT.format(inputedDate));
+        reservations.forEach(r -> println(RESERVATION_FORMAT.format(r)));
         blankLine();
         waitPressEnter();
     }

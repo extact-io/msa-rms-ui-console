@@ -19,3 +19,7 @@ configdump:
     #- filter: mp
     #- filter: jwt
     #- filter: healthCheck
+jwt:
+  privatekey.path: /jwt.key
+  claim.issuer: RentalReservationSystem
+mp.jwt.verify.publickey.location: /jwt.pub.key

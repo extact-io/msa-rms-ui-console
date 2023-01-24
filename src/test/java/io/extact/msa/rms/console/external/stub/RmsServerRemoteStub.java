@@ -31,10 +31,10 @@ import io.extact.msa.rms.platform.test.stub.dto.RentalItemStubDto;
 import io.extact.msa.rms.platform.test.stub.dto.ReservationStubDto;
 import io.extact.msa.rms.platform.test.stub.dto.UserAccountStubDto;
 
-@Path("/rms")
+@Path("rms")
 @ValidateParam
 @ApplicationScoped
-public class RmsServerRemoteStub implements RmsServerRestClient {
+public class RmsServerRemoteStub implements RmsServerRestClient, Authenticator {
 
     private RentalItemMemoryStub itemStub = new RentalItemMemoryStub();
     private UserAccountMemoryStub userStub = new UserAccountMemoryStub();
@@ -45,6 +45,11 @@ public class RmsServerRemoteStub implements RmsServerRestClient {
         itemStub.init();
         userStub.init();
         reservationStub.init();
+    }
+
+    @Override
+    public UserAccountStubDto authenticate(String loginId, String password) {
+        return userStub.authenticate(loginId, password);
     }
 
     @Override

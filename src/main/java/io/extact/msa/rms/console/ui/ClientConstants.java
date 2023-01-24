@@ -32,8 +32,6 @@ public class ClientConstants {
         + "管理者用メニュー画面へ戻る場合は、-1を入力して下さい。";
     public static final String EDIT_USER_INFORMATION = "編集するユーザ番号を入力後、パスワード、ユーザ名、電話番号、連絡先、権限を入力して下さい。" + System.lineSeparator()
         + "管理者用メニュー画面へ戻る場合は、-1を入力して下さい。";
-
     public static final String UNKNOWN_ERROR_INFORMATION = "予期せぬエラーが発生しました。ログインからやり直してください";
-
-
+    public static final String DATA_NOT_FOUND_INFORMATION = "該当データがありませんでした";
 }

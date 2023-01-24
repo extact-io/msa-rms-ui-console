@@ -20,7 +20,7 @@ import io.extact.msa.rms.platform.fw.external.jwt.JwtRecieveResponseFilter;
 @RegisterProvider(RmsTypeParameterFeature.class)
 @RegisterProvider(PropagateResponseExceptionMapper.class)
 @RegisterProvider(JwtRecieveResponseFilter.class)
-@Path("/login")
+@Path("auth/login")
 public interface LoginServerRestClient {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
