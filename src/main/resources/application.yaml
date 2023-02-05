@@ -1,8 +1,22 @@
 config_ordinal: 150
-server.url: http://localhost:7001
-web-api/mp-rest/url: ${server.url}
-main.manifest.jar: msa-rms-ui-console\.jar$
+#----------------------------------
+# Defined for each environment
+#----------------------------------
+env.rms:
+  server.url: http://localhost:7001
 
-configuredCdi:
-  register:
-    - class: io.extact.msa.rms.platform.fw.external.PropagateJwtClientHeadersFactory
+#----------------------------------
+# Helidon Configurations
+#----------------------------------
+web-api/mp-rest/url: ${env.rms.server.url}
+
+#----------------------------------
+# Applications Configurations
+#----------------------------------
+rms:
+  cdi:
+    configuredCdi:
+      register:
+        - class: io.extact.msa.rms.platform.fw.external.PropagateJwtClientHeadersFactory
+  env:
+    main.jar: msa-rms-ui-console\.jar$

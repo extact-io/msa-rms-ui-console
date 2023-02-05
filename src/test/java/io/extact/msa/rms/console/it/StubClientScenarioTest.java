@@ -20,8 +20,8 @@ import io.helidon.microprofile.tests.junit5.AddConfig;
 @AddBean(LoginServerRemoteStubApplication.class)
 @AddBean(RmsServerRemoteStub.class)
 @AddBean(RmsServerRemoteStubApplication.class)
-//configuredCdi.register.0.classは/main/resource/application.yamlで定義済み
-@AddConfig(key = "configuredCdi.register.1.class", value = "io.extact.msa.rms.platform.core.jwt.provider.impl.Auth0RsaJwtGenerator")
+//rms.cdi.configuredCdi.register.0.classは/main/resource/application.yamlで定義済み
+@AddConfig(key = "rms.cdi.configuredCdi.register.1.class", value = "io.extact.msa.rms.platform.core.jwt.provider.impl.Auth0RsaJwtGenerator")
 @AddConfig(key = "server.port", value = "7001") // for RemoteStub Server port
 @AddConfig(key = "web-api/mp-rest/url", value = "http://localhost:7001") // for REST Client
 class StubClientScenarioTest extends AbstractClientScenarioTest {
