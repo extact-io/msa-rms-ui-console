@@ -12,6 +12,20 @@
 	<name>msa-rms-ui-console</name>
 	<description>Console UI to operate the rms application</description>
 
+	<repositories>
+		<repository>
+			<id>github</id>
+			<name>GitHub Apache Maven Packages</name>
+			<url>https://maven.pkg.github.com/extact-io/msa-rms-parent</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
 	<properties>
 		<mainClass>io.extact.msa.rms.console.ConsoleMain</mainClass>
 		<target.env>develop</target.env>
