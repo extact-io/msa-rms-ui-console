@@ -3,7 +3,8 @@ config_ordinal: 150
 # Defined for each environment
 #----------------------------------
 env.rms:
-  server.url: http://localhost:7001
+  #server.url: http://localhost:7001
+  server.url: https://api.rms.extact.io
 
 #----------------------------------
 # Helidon Configurations
