@@ -6,6 +6,7 @@ import jakarta.enterprise.inject.spi.CDI;
 
 import io.extact.msa.rms.console.ui.ScreenController;
 import io.extact.msa.rms.console.ui.textio.TextIoUtils;
+import io.extact.msa.rms.platform.fw.exception.RmsServiceUnavailableException;
 import io.extact.msa.rms.platform.fw.webapi.BootstrapWebApi;
 import lombok.extern.slf4j.Slf4j;
 
@@ -27,6 +28,9 @@ public class ConsoleMain {
                 try {
                     controller.start();
                     break;
+                } catch (RmsServiceUnavailableException e) {
+                    log.warn(e.getMessage());
+                    TextIoUtils.printErrorInformation(SERVICE_UNAVAILABLE_INFORMATION);
                 } catch (Exception e) {
                     log.error("Back to start..", e);
                     TextIoUtils.printErrorInformation(UNKNOWN_ERROR_INFORMATION);
